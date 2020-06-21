@@ -8,7 +8,7 @@
 # 1. Check if .env file exists
 if [ -e .env ]; then
     source .env
-else 
+else
     echo "It seems you didn´t create your .env file, so we will create one for you."
     cp .env.sample .env
     # exit 1
@@ -23,7 +23,8 @@ if [ ! -z ${SERVICE_NETWORK+X} ]; then
 fi
 
 # 4. Download the latest version of nginx.tmpl
-curl https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl > nginx.tmpl
+# we use our own nginx.tmpl
+# curl https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl > nginx.tmpl
 
 # 5. Update local images
 docker-compose pull
@@ -52,10 +53,10 @@ if [ ! -z ${USE_NGINX_CONF_FILES+X} ] && [ "$USE_NGINX_CONF_FILES" = true ]; the
         echo "There was an error trying to copy the nginx conf files."
         echo "The proxy will still work with default options, but"
         echo "the custom settings your have made could not be loaded."
-        echo 
+        echo
         echo "#######################################################"
     fi
-fi 
+fi
 
 # 7. Start proxy
 
